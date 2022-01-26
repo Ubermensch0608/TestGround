@@ -5,11 +5,13 @@ import Button from "../../layout/Button";
 
 import styles from "./Todo.module.css";
 import { CalcContext } from "../../App";
+import { useSelector } from "react-redux";
 
 const Todo = () => {
   const [todoText, setTodoText] = useState();
   const [saveTodo, setSaveTodo] = useState([]);
-  const { calcNumber } = useContext(CalcContext);
+
+  const calcNumber = useSelector((state) => state.calc.calcNumber);
 
   const submitHandler = (event) => {
     event.preventDefault();

@@ -1,23 +1,25 @@
-import React, { createContext, useState, useCont } from "react";
+import React, { useState } from "react";
 import Form from "../../layout/Form";
 import Button from "../../layout/Button";
 
 import styles from "./Calc.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { calcAtions } from "../../store";
 
-const Calc = ({ onAddNumber }) => {
-  const [number, setNumber] = useState(0);
+const Calc = () => {
+  const dispatch = useDispatch();
+  const calcNumber = useSelector((state) => state.calc.calcNumber);
 
   const submitHandler = (event) => {
     event.preventDefault();
-    onAddNumber(number);
   };
 
-  const calcHandler = (value) => {
-    setNumber((prev) => prev + value);
+  const calcHandler = (number) => {
+    dispatch(calcAtions.calc(number));
   };
 
   const resetHandler = () => {
-    setNumber(0);
+    dispatch(calcAtions.calc(-calcNumber));
   };
 
   return (
@@ -56,7 +58,7 @@ const Calc = ({ onAddNumber }) => {
         </div>
       </Form>
       <div>
-        <h3>{number}</h3>
+        <h3>{calcNumber}</h3>
         <p>이 결과를</p>
       </div>
     </div>
