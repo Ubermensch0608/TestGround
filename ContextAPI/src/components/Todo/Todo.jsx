@@ -1,43 +1,39 @@
-import React, { useState, useContext } from "react";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 import Form from "../../layout/Form";
 import Input from "../../layout/Input";
 import Button from "../../layout/Button";
 
 import styles from "./Todo.module.css";
-import { CalcContext } from "../../App";
-import { useSelector } from "react-redux";
+import { todoActions } from "../../store";
 
 const Todo = () => {
-  const [todoText, setTodoText] = useState();
-  const [saveTodo, setSaveTodo] = useState([]);
-
-  const calcNumber = useSelector((state) => state.calc.calcNumber);
+  const dispatch = useDispatch();
+  const todoLists = useSelector((state) => state.todo.todoLists);
+  const todoList = useSelector((state) => state.todo.todoList);
 
   const submitHandler = (event) => {
     event.preventDefault();
-    if (todoText !== "") {
-      if (calcNumber !== undefined) {
-        setSaveTodo([`${todoText}: ${calcNumber} `, ...saveTodo]);
-      } else {
-        setSaveTodo([todoText, ...saveTodo]);
-      }
+
+    if (todoList !== "") {
+      dispatch(todoActions.todos(todoList));
     } else {
       return;
     }
-
-    setTodoText("");
+    dispatch(todoActions.todo(""));
   };
 
   const getTextHandler = (event) => {
     const newValue = event.target.value;
-    setTodoText(newValue);
+    dispatch(todoActions.todo(newValue));
   };
 
   const deleteHandler = () => {
     // list.parentElement = "";
   };
 
-  const todoMemo = saveTodo.map((list, i) => {
+  const todoMemo = todoLists.map((list, i) => {
     return (
       <li key={i}>
         {list}
@@ -52,7 +48,7 @@ const Todo = () => {
     <div className={styles.todo}>
       <h3>todo-list 입력</h3>
       <Form onSubmit={submitHandler}>
-        <Input onChange={getTextHandler} value={todoText} />
+        <Input onChange={getTextHandler} value={todoList} />
         <Button type="submit">등록</Button>
       </Form>
       <div>

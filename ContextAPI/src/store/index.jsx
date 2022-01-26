@@ -1,5 +1,4 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
-import { createStore } from "redux";
 
 const calcInitialState = { calcNumber: 0 };
 
@@ -13,12 +12,27 @@ const calcSlice = createSlice({
   }
 });
 
-const store = configureStore({
-  reducer: {
-    calc: calcSlice.reducer
+const todoInitialState = { todoList: "", todoLists: [] };
+const todoSlice = createSlice({
+  name: "todo",
+  initialState: todoInitialState,
+  reducers: {
+    todo(state, action) {
+      state.todoList = action.payload;
+    },
+    todos(state, action) {
+      state.todoLists = [action.payload, ...state.todoLists];
+    }
   }
 });
 
-export const calcAtions = calcSlice.actions;
+const store = configureStore({
+  reducer: {
+    calc: calcSlice.reducer,
+    todo: todoSlice.reducer
+  }
+});
 
+export const calcActions = calcSlice.actions;
+export const todoActions = todoSlice.actions;
 export default store;

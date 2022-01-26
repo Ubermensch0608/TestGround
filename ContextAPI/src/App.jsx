@@ -1,4 +1,4 @@
-import React, { useState, createContext, Fragment } from "react";
+import React, { Fragment } from "react";
 import Calc from "./components/Calculator/Calc";
 import Todo from "./components/Todo/Todo";
 

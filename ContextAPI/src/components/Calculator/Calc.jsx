@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import Form from "../../layout/Form";
 import Button from "../../layout/Button";
 
 import styles from "./Calc.module.css";
 import { useDispatch, useSelector } from "react-redux";
-import { calcAtions } from "../../store";
+import { calcActions } from "../../store/index";
 
 const Calc = () => {
   const dispatch = useDispatch();
@@ -15,11 +15,11 @@ const Calc = () => {
   };
 
   const calcHandler = (number) => {
-    dispatch(calcAtions.calc(number));
+    dispatch(calcActions.calc(number));
   };
 
   const resetHandler = () => {
-    dispatch(calcAtions.calc(-calcNumber));
+    dispatch(calcActions.calc(-calcNumber));
   };
 
   return (
