@@ -6,6 +6,7 @@
   "main": "src/index.js",
   "dependencies": {
     "@reduxjs/toolkit": "^1.7.1",
+    "nanoid": "^3.2.0",
     "react": "16.8.6",
     "react-dom": "16.8.6",
     "react-redux": "^7.2.6",

@@ -1,12 +1,14 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { todoActions } from "../../store";
+
+import { nanoid } from "nanoid";
 
 import Form from "../../layout/Form";
 import Input from "../../layout/Input";
 import Button from "../../layout/Button";
 
 import styles from "./Todo.module.css";
-import { todoActions } from "../../store";
 
 const Todo = () => {
   const dispatch = useDispatch();
@@ -29,16 +31,16 @@ const Todo = () => {
     dispatch(todoActions.todo(newValue));
   };
 
-  const deleteHandler = () => {
-    // list.parentElement = "";
-  };
+  // const deleteHandler = () => {
+  //   // list.parentElement = "";
+  // };
 
-  const todoMemo = todoLists.map((list, i) => {
+  const todoMemo = todoLists.map((list, id = nanoid()) => {
     return (
-      <li key={i}>
+      <li key={id}>
         {list}
-        <Button onClick={deleteHandler}>
-          <span role="img">❌</span>
+        <Button>
+          <span role="delete">❌</span>
         </Button>
       </li>
     );
