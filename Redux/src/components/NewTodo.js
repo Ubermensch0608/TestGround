@@ -1,6 +1,6 @@
 import React, { useRef } from "react";
 
-const NewTodo = () => {
+const NewTodo = (props) => {
   const todoTextRef = useRef();
 
   const submitHandler = (event) => {
@@ -11,7 +11,7 @@ const NewTodo = () => {
       return;
     }
 
-    console.log(newTodoText);
+    props.onAddTodo(newTodoText);
     todoTextRef.current.value = "";
   };
 
