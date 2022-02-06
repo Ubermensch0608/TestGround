@@ -1,10 +1,11 @@
 import React from "react";
+import TodoText from "./TodoText";
 
 const Todos = (props) => {
   return (
     <ul>
       {props.items.map((item) => (
-        <li>{item}</li>
+        <TodoText key={item.id} text={item.text} />
       ))}
     </ul>
   );

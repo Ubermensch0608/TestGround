@@ -1,7 +1,12 @@
 import React from "react";
 import Todos from "./components/Todos";
+import Todo from "./models/todo";
 
-const MOCK_DATA = ["redux 복습하기", "velog 작성하기", "TypeScript 공부하기"];
+const MOCK_DATA = [
+  new Todo("redux 복습하기"),
+  new Todo("velog 작성하기"),
+  new Todo("TypeScript 공부하기"),
+];
 
 const App = () => {
   return (
