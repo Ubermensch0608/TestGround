@@ -1,6 +1,12 @@
 import { createStore } from "redux";
 
-const todoReducer = (state = { todoId: null }, action) => {
+const todoReducer = (state = { text: null, todoId: null }, action) => {
+  if (action.type === "add") {
+    return {
+      text: action.payload,
+    };
+  }
+
   if (action.type === "remove") {
     return {
       todoId: action.payload,

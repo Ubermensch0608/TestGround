@@ -7,12 +7,17 @@ import Todo from "./models/todo";
 const App = () => {
   const [todos, setTodos] = useState([]);
   const todoId = useSelector((state) => state.todoId);
+  const newTodoText = useSelector((state) => state.text);
 
-  const saveTodoHandler = (newTodoText) => {
+  useEffect(() => {
     setTodos((prevTodos) => {
-      return [new Todo(newTodoText), ...prevTodos];
+      if (newTodoText === null || newTodoText === undefined) {
+        return [...prevTodos];
+      } else {
+        return [new Todo(newTodoText), ...prevTodos];
+      }
     });
-  };
+  }, [newTodoText]);
 
   useEffect(() => {
     setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== todoId));
@@ -20,7 +25,7 @@ const App = () => {
 
   return (
     <div>
-      <NewTodo onAddTodo={saveTodoHandler} />
+      <NewTodo />
       <Todos items={todos} />
     </div>
   );

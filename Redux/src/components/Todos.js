@@ -5,7 +5,7 @@ const Todos = (props) => {
   return (
     <ul>
       {props.items.map((item) => (
-        <TodoText key={item.id} id={item.id} text={item.text} />
+        <TodoText key={item.id} id={item.id} items={item.text} />
       ))}
     </ul>
   );

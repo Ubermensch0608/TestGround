@@ -15,7 +15,7 @@ const TodoText = (props) => {
 
   return (
     <li id={props.id} onClick={removeHandler}>
-      {props.text}
+      {props.items}
     </li>
   );
 };
