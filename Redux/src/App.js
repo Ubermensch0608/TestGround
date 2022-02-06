@@ -1,32 +1,24 @@
-import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import React, { useState } from "react";
 import NewTodo from "./components/NewTodo";
 import Todos from "./components/Todos";
 import Todo from "./models/todo";
 
 const App = () => {
   const [todos, setTodos] = useState([]);
-  const todoId = useSelector((state) => state.todoId);
-  const newTodoText = useSelector((state) => state.text);
 
-  useEffect(() => {
-    setTodos((prevTodos) => {
-      if (newTodoText === null || newTodoText === undefined) {
-        return [...prevTodos];
-      } else {
-        return [new Todo(newTodoText), ...prevTodos];
-      }
+  const saveTodoHandler = (newTodoText) => {
+    setTodos((prevTodo) => {
+      return [new Todo(newTodoText), ...prevTodo];
     });
-  }, [newTodoText]);
+  };
 
-  useEffect(() => {
-    setTodos((prevTodos) => prevTodos.filter((todo) => todo.id !== todoId));
-  }, [todoId]);
-
+  const removeHandler = (todoId) => {
+    setTodos((prev) => prev.filter((item) => item.id !== todoId));
+  };
   return (
     <div>
-      <NewTodo />
-      <Todos items={todos} />
+      <NewTodo onSaveTodo={saveTodoHandler} />
+      <Todos items={todos} onRemove={removeHandler} />
     </div>
   );
 };

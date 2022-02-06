@@ -1,8 +1,6 @@
 import React, { useRef } from "react";
-import { useDispatch } from "react-redux";
 
-const NewTodo = () => {
-  const dispatch = useDispatch();
+const NewTodo = (props) => {
   const todoTextRef = useRef();
 
   const submitHandler = (event) => {
@@ -13,11 +11,7 @@ const NewTodo = () => {
       return;
     }
 
-    dispatch({
-      type: "add",
-      payload: newTodoText,
-    });
-
+    props.onSaveTodo(newTodoText);
     todoTextRef.current.value = "";
   };
 
