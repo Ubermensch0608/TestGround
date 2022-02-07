@@ -24,3 +24,18 @@
       - 변동되는 state는 dispath로 관리한다.
       - const dispatch = useDispatch() 로 정의
       - dispatch({type: '설정한 type', payload: '제공될 새로운 값' }) 
+
+3. Jotai 연습
+     1. atom 만들기
+        - initial state 생성
+        - import { atom } from 'jotai'
+        - const testAtom = atom('') 과 같이 생성
+     
+     2. useAtom 으로 불러오기 
+        - useState의 [ testState, setTestState ]와 같이 쓸 수 있음
+        - import { useAtom } from 'jotai'
+        - import testAtom from '...' 
+        - 위에서 생성한 atom  불러와서 사용
+        - const [ testAtomState, setTestAtomState ] = useAtom(testAtom)
+        - testAtomState값은 저장된 state값
+        - setTestAtomState는 setter 함수 (testAtomState를 변경시키는 함수) 
