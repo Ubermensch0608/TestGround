@@ -1,17 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useAtom } from "jotai";
+import { removeTodoAtom, todosAtom } from "./store/atoms";
+
+import NewTodo from "./components/NewTodo";
 import Todos from "./components/Todos";
 import Todo from "./models/todo";
 
-const MOCK_DATA = [
-  new Todo("안녕하세요"),
-  new Todo("감사해요"),
-  new Todo("잘있어요"),
-];
-
 const App = () => {
+  const [todos, setTodos] = useAtom(todosAtom);
+  const [todoItemId] = useAtom(removeTodoAtom);
+
+  const saveTodoHandler = (newTodoText) => {
+    setTodos((prevTodos) => {
+      return [new Todo(newTodoText), ...prevTodos];
+    });
+  };
+
+  useEffect(() => {
+    setTodos((prevTodos) => prevTodos.filter((item) => item.id !== todoItemId));
+  }, [todoItemId, setTodos]);
+
   return (
     <div>
-      <Todos items={MOCK_DATA} />
+      <NewTodo onAddTodo={saveTodoHandler} />
+      <Todos items={todos} />
     </div>
   );
 };
