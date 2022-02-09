@@ -1,5 +1,6 @@
 import MyModal from "components/MyModal";
 import MyTab from "components/MyTab";
+import MyTag from "components/MyTag";
 import styled from "styled-components";
 import MyToggle from "./components/MyToggle";
 
@@ -9,6 +10,7 @@ const App = () => {
       <MyToggle />
       <MyModal />
       <MyTab />
+      <MyTag />
     </Wrapper>
   );
 };

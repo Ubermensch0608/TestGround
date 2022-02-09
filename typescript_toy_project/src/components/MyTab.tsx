@@ -1,6 +1,6 @@
 import Tab from "layout/Tab";
 import { nanoid } from "nanoid";
-import React, { MouseEvent } from "react";
+import React from "react";
 import { useState } from "react";
 import styled from "styled-components";
 
