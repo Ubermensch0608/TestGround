@@ -19,6 +19,6 @@ const Wrapper = styled.div`
   align-items: flex-start;
   width: 800px;
   padding: 100px;
-  margin-left: 30%;
+  margin-left: 10%;
 `;
 export default App;

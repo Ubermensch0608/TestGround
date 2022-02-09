@@ -20,3 +20,9 @@ export interface ButtonProps {
 export interface ModalContentProps {
   onClick: React.MouseEventHandler;
 }
+
+export interface TabProps {
+  id: string;
+  clickedTab: string;
+  onClick: React.MouseEventHandler;
+}
