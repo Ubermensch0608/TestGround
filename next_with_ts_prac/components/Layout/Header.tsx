@@ -5,20 +5,32 @@ import styled from 'styled-components';
 const Header = () => {
   return (
     <HeaderLayout>
-      <nav>
+      <TopNav>
+        <Link href={'/'}>홈</Link>
         <Link href={'/memo-list'}>메모장</Link>
-      </nav>
+      </TopNav>
     </HeaderLayout>
   );
 };
 
 const HeaderLayout = styled.header`
   position: fixed;
+  top: 0;
+  display: flex;
+  align-items: center;
   width: 100%;
-  height: 10%;
+  height: 70px;
   background-color: tomato;
   color: #fff;
+  font-weight: 700;
+  font-size: 18px;
   padding: 20px 50px;
 `;
 
+const TopNav = styled.nav`
+  display: flex;
+  justify-content: space-evenly;
+  width: 20%;
+  margin: 0 100px;
+`;
 export default Header;

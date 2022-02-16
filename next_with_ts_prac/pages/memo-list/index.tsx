@@ -28,11 +28,7 @@ const MEMO_MOCK_DATA: MemoProps[] = [
 ];
 
 const MemoListPage: NextPage = () => {
-  return (
-    <div>
-      <MemoList memoData={MEMO_MOCK_DATA} />
-    </div>
-  );
+  return <MemoList memoData={MEMO_MOCK_DATA} />;
 };
 
 export default MemoListPage;

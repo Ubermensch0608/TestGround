@@ -1,7 +1,10 @@
 import React, { TimeHTMLAttributes } from 'react';
+import styled from 'styled-components';
+import Wrapper from './Layout/BodyWrapper';
+import Memo from './Memo';
 
 export interface MemoProps {
-  id: string;
+  id?: string;
   userName: string;
   title: string;
   text: string;
@@ -12,22 +15,13 @@ const MemoList: React.FC<{ memoData: MemoProps[] }> = (props) => {
   return (
     <ul>
       {props.memoData.map((memo) => (
-        <li key={memo.id}>
-          <div>
-            <h3>{memo.title}</h3>
-          </div>
-          <div>
-            <div>
-              <span>작성자</span>
-              <span>{memo.userName}</span>
-            </div>
-            <div>
-              <span>작성 일시</span>
-              <span>{memo.timeStamp}</span>
-            </div>
-          </div>
-          <div>{memo.text}</div>
-        </li>
+        <Memo
+          key={memo.id}
+          title={memo.title}
+          userName={memo.userName}
+          timeStamp={memo.timeStamp}
+          text={memo.text}
+        />
       ))}
     </ul>
   );
