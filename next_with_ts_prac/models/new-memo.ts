@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid';
 
-export class Memo {
+export class setMemo {
   id?: string;
   userName: string | number;
   title: string;

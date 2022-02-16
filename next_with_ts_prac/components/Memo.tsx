@@ -2,8 +2,9 @@ import React from 'react';
 import { MemoProps } from 'models/memo';
 
 import styled from 'styled-components';
+import { setMemo } from 'models/new-memo';
 
-const Memo: React.FC<MemoProps> = (props) => {
+const Memo: React.FC<setMemo> = (props) => {
   return (
     <SingleMemo>
       <div>

@@ -1,13 +1,12 @@
-import React, { useRef, useState } from 'react';
-import { Memo } from '../models/new-memo';
+import React, { useRef } from 'react';
+import { setMemo } from '../models/new-memo';
 
 import styled from 'styled-components';
 
-const NewMemo = () => {
+const NewMemo: React.FC<{ memo: (memo: setMemo) => void }> = ({ memo }) => {
   const userRef = useRef<HTMLInputElement>(null);
   const titleRef = useRef<HTMLInputElement>(null);
   const memoTextRef = useRef<HTMLTextAreaElement>(null);
-  const [newMemo, setNewMemo] = useState<Memo>();
 
   const submitHandler = (event: React.FormEvent) => {
     event.preventDefault();
@@ -19,7 +18,8 @@ const NewMemo = () => {
       alert('타이틀과 메모란에 글을 작성해주세요');
       return;
     }
-    setNewMemo(new Memo(userValue, titleValue, textValue));
+
+    memo(new setMemo(userValue, titleValue, textValue));
 
     userRef.current!.value = '';
     titleRef.current!.value = '';
@@ -32,7 +32,6 @@ const NewMemo = () => {
     event.preventDefault();
   };
 
-  console.log(newMemo);
   return (
     <form onSubmit={submitHandler}>
       <div>

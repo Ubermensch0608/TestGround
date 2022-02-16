@@ -1,12 +1,13 @@
 import { MemoProps } from 'models/memo';
+import { setMemo } from 'models/new-memo';
 import React from 'react';
 
 import Memo from './Memo';
 
-const MemoList: React.FC<{ memoData: MemoProps[] }> = (props) => {
+const MemoList: React.FC<{ memoList: setMemo[] }> = ({ memoList }) => {
   return (
     <ul>
-      {props.memoData.map((memo) => (
+      {memoList.map((memo) => (
         <Memo
           key={memo.id}
           title={memo.title}
