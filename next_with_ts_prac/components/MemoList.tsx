@@ -1,15 +1,7 @@
-import React, { TimeHTMLAttributes } from 'react';
-import styled from 'styled-components';
-import Wrapper from './Layout/BodyWrapper';
-import Memo from './Memo';
+import { MemoProps } from 'models/memo';
+import React from 'react';
 
-export interface MemoProps {
-  id?: string;
-  userName: string;
-  title: string;
-  text: string;
-  timeStamp: string;
-}
+import Memo from './Memo';
 
 const MemoList: React.FC<{ memoData: MemoProps[] }> = (props) => {
   return (

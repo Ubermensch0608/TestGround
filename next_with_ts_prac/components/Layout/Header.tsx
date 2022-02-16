@@ -8,6 +8,7 @@ const Header = () => {
       <TopNav>
         <Link href={'/'}>홈</Link>
         <Link href={'/memo-list'}>메모장</Link>
+        <Link href={'/new-memo'}>작성하기</Link>
       </TopNav>
     </HeaderLayout>
   );
@@ -30,7 +31,7 @@ const HeaderLayout = styled.header`
 const TopNav = styled.nav`
   display: flex;
   justify-content: space-evenly;
-  width: 20%;
+  width: 30%;
   margin: 0 100px;
 `;
 export default Header;

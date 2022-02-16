@@ -1,7 +1,7 @@
-import MemoList, { MemoProps } from 'components/MemoList';
+import MemoList from 'components/MemoList';
+import { MemoProps } from 'models/memo';
 import { nanoid } from 'nanoid';
 import { NextPage } from 'next';
-import React from 'react';
 
 const MEMO_MOCK_DATA: MemoProps[] = [
   {

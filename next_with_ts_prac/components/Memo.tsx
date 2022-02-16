@@ -1,6 +1,7 @@
 import React from 'react';
+import { MemoProps } from 'models/memo';
+
 import styled from 'styled-components';
-import { MemoProps } from './MemoList';
 
 const Memo: React.FC<MemoProps> = (props) => {
   return (
