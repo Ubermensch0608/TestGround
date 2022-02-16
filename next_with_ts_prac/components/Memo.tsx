@@ -1,6 +1,3 @@
-import React from 'react';
-import { MemoProps } from 'models/memo';
-
 import styled from 'styled-components';
 import { setMemo } from 'models/new-memo';
 
@@ -20,7 +17,7 @@ const Memo: React.FC<setMemo> = (props) => {
           <span>{props.timeStamp}</span>
         </div>
       </Section_SubTitle>
-      <div>{props.text}</div>
+      <MemoText>{props.text}</MemoText>
     </SingleMemo>
   );
 };
@@ -54,4 +51,7 @@ export const MemoTitle = styled.h3`
   font-size: 18px;
 `;
 
+export const MemoText = styled.div`
+  white-space: pre-wrap;
+`;
 export default Memo;

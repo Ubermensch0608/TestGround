@@ -10,16 +10,17 @@ const NewMemo: React.FC<{ memo: (memo: setMemo) => void }> = ({ memo }) => {
 
   const submitHandler = (event: React.FormEvent) => {
     event.preventDefault();
-    const userValue: string | number = userRef.current!.value;
+    const userValue: string = userRef.current!.value;
     const titleValue: string = titleRef.current!.value;
     const textValue: string = memoTextRef.current!.value;
+    const cleanTextValue: string = textValue.replace(/(^\s*)|(\s*$)/gi, '');
 
     if (!userValue || !titleValue || !textValue) {
       alert('타이틀과 메모란에 글을 작성해주세요');
       return;
     }
 
-    memo(new setMemo(userValue, titleValue, textValue));
+    memo(new setMemo(userValue, titleValue, cleanTextValue));
 
     userRef.current!.value = '';
     titleRef.current!.value = '';
@@ -29,31 +30,29 @@ const NewMemo: React.FC<{ memo: (memo: setMemo) => void }> = ({ memo }) => {
   };
 
   const preventSubmitHandler = (event: React.KeyboardEvent) => {
-    event.preventDefault();
+    const pressedKey = event.key;
+
+    if (!event.shiftKey && pressedKey === 'Enter') {
+      submitHandler(event);
+    }
   };
 
   return (
     <form onSubmit={submitHandler}>
       <div>
-        <label htmlFor="title">타이틀</label>
-        <Input
-          type="text |  number"
-          id="title"
-          onKeyPress={preventSubmitHandler}
-          ref={titleRef}
-        />
+        <label htmlFor="title">제목</label>
+        <Input type="text" id="title" ref={titleRef} />
         <label htmlFor="user">작성자</label>
-        <Input
-          type="text |  number"
-          id="user"
-          onKeyPress={preventSubmitHandler}
-          ref={userRef}
-        />
+        <Input type="text" id="user" ref={userRef} />
         <SubmitButton>작성하기</SubmitButton>
       </div>
       <div>
-        <label htmlFor="title">메모</label>
-        <TextArea id="title" ref={memoTextRef} />
+        <label htmlFor="memo-text">메모</label>
+        <TextArea
+          id="memo-text"
+          ref={memoTextRef}
+          onKeyPress={preventSubmitHandler}
+        />
       </div>
     </form>
   );

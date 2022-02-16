@@ -2,12 +2,12 @@ import { nanoid } from 'nanoid';
 
 export class setMemo {
   id?: string;
-  userName: string | number;
+  userName: string;
   title: string;
   text: string;
   timeStamp: string;
 
-  constructor(setUserName: string | number, setTitle: string, setText: string) {
+  constructor(setUserName: string, setTitle: string, setText: string) {
     this.id = nanoid();
     this.userName = setUserName;
     this.title = setTitle;

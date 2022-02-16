@@ -1,6 +1,4 @@
-import { MemoProps } from 'models/memo';
 import { setMemo } from 'models/new-memo';
-import React from 'react';
 
 import Memo from './Memo';
 

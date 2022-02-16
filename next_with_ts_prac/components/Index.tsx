@@ -1,12 +1,9 @@
-import MemoList from 'components/MemoList';
-import NewMemo from 'components/NewMemo';
-
 import { setMemo } from 'models/new-memo';
+import React, { useState } from 'react';
+import MemoList from './MemoList';
+import NewMemo from './NewMemo';
 
-import { NextPage } from 'next';
-import { Fragment, useEffect, useState } from 'react';
-
-const MemoListPage: NextPage = () => {
+const Index = () => {
   const [newMemo, setNewMemo] = useState<setMemo[]>([]);
 
   const saveMemoHandler = (newMemo: setMemo) => {
@@ -16,11 +13,11 @@ const MemoListPage: NextPage = () => {
   };
 
   return (
-    <Fragment>
+    <div>
       <MemoList memoList={newMemo} />
       <NewMemo memo={saveMemoHandler} />
-    </Fragment>
+    </div>
   );
 };
 
-export default MemoListPage;
+export default Index;
