@@ -6,6 +6,8 @@ const BodyWrapper: React.FC = ({ children }) => {
 };
 
 const StyledWrapper = styled.div`
+  display: flex;
+  justify-content: center;
   margin: 100px 50px;
 `;
 

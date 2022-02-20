@@ -1,17 +1,17 @@
 import { nanoid } from 'nanoid';
 
 export class setMemo {
-  id?: string;
-  userName: string;
+  id?: string | number;
+  userName: string | number;
   title: string;
-  text: string;
-  timeStamp: string;
+  body: string;
+  timeStamp?: string;
 
-  constructor(setUserName: string, setTitle: string, setText: string) {
+  constructor(setUserName: number | string, setTitle: string, setText: string) {
     this.id = nanoid();
     this.userName = setUserName;
     this.title = setTitle;
-    this.text = setText;
-    this.timeStamp = Date();
+    this.body = setText;
+    this.timeStamp = new Date().toLocaleString();
   }
 }

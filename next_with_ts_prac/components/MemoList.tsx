@@ -1,5 +1,5 @@
 import { setMemo } from 'models/new-memo';
-
+import { memo } from 'react';
 import Memo from './Memo';
 
 const MemoList: React.FC<{ memoList: setMemo[] }> = ({ memoList }) => {
@@ -9,13 +9,13 @@ const MemoList: React.FC<{ memoList: setMemo[] }> = ({ memoList }) => {
         <Memo
           key={memo.id}
           title={memo.title}
+          body={memo.body}
           userName={memo.userName}
           timeStamp={memo.timeStamp}
-          text={memo.text}
         />
       ))}
     </ul>
   );
 };
 
-export default MemoList;
+export default memo(MemoList);

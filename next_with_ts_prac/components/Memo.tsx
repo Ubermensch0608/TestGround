@@ -1,5 +1,6 @@
-import styled from 'styled-components';
 import { setMemo } from 'models/new-memo';
+
+import styled from 'styled-components';
 
 const Memo: React.FC<setMemo> = (props) => {
   return (
@@ -17,7 +18,7 @@ const Memo: React.FC<setMemo> = (props) => {
           <span>{props.timeStamp}</span>
         </div>
       </Section_SubTitle>
-      <MemoText>{props.text}</MemoText>
+      <MemoText>{props.body}</MemoText>
     </SingleMemo>
   );
 };
