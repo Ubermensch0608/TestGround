@@ -1,5 +1,6 @@
 import UseEffect from "./components/useEffect/UseEffect";
 import UseReducer from "./components/useReducer/UseReducer";
+import UseRef from "./components/useRef/UseRef";
 import UseState from "./components/useState/UseState";
 
 const App = () => {
@@ -7,7 +8,8 @@ const App = () => {
     <div>
       {/* <UseState /> */}
       {/* <UseReducer /> */}
-      <UseEffect />
+      {/* <UseEffect /> */}
+      <UseRef />
     </div>
   );
 };
