@@ -1,4 +1,6 @@
 import UseEffect from "./components/useEffect/UseEffect";
+import PracticeParent from "./components/useImperativeHandle/PracticeParent";
+import UseImperativeHandle from "./components/useImperativeHandle/UseImperativeHandle";
 import UseLayoutEffect from "./components/useLayoutEffect/UseLayoutEffect";
 import UseReducer from "./components/useReducer/UseReducer";
 import UseRef from "./components/useRef/UseRef";
@@ -11,7 +13,9 @@ const App = () => {
       {/* <UseReducer /> */}
       {/* <UseEffect /> */}
       {/* <UseRef /> */}
-      <UseLayoutEffect />
+      {/* <UseLayoutEffect /> */}
+      {/* <UseImperativeHandle /> */}
+      <PracticeParent />
     </div>
   );
 };
