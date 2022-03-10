@@ -1,8 +1,7 @@
-import logo from "./logo.svg";
-import "./App.css";
+import UseState from "./components/useState/UseState";
 
 const App = () => {
-  return <div>Hello World!</div>;
+  return <UseState />;
 };
 
 export default App;
