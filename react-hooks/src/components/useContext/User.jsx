@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import { AppContext } from "./ContextAPI";
 
-const User = (props) => {
+const User = () => {
+  const { userName } = useContext(AppContext);
+
   return (
     <div>
-      <h2>{props.user}</h2>
+      <h2>{userName}</h2>
     </div>
   );
 };

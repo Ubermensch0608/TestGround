@@ -1,12 +1,15 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
+import { AppContext } from "./ContextAPI";
 
-const Login = (props) => {
+const Login = () => {
+  const { setUserName } = useContext(AppContext);
+
   const userInputRef = useRef(null);
 
   const submitHandler = (event) => {
     event.preventDefault();
 
-    props.onSaveUser(userInputRef.current.value);
+    setUserName(userInputRef.current.value);
   };
 
   return (
