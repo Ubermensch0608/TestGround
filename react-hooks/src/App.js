@@ -1,3 +1,4 @@
+import UseCallback from "./components/useCallback/UseCallback";
 import ContextAPI from "./components/useContext/ContextAPI";
 import UseEffect from "./components/useEffect/UseEffect";
 import PracticeParent from "./components/useImperativeHandle/PracticeParent";
@@ -19,7 +20,8 @@ const App = () => {
       {/* <UseImperativeHandle /> */}
       {/* <PracticeParent /> */}
       {/* <ContextAPI /> */}
-      <UseMemo />
+      {/* <UseMemo /> */}
+      <UseCallback />
     </div>
   );
 };
