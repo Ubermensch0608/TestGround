@@ -23,3 +23,55 @@ Enzyme은 테스팅을 위해 초기에 알아야하는 것이 많고, 설정해
 
 **참고 유튜브 영상** -
 <a href='https://www.youtube.com/watch?v=JKOwJUM4_RM'>What Is React Testing Library?</a>
+
+## 적용해보기
+
+**참조 문서**
+<a href='https://www.robinwieruch.de/react-testing-library/'>React Testing Library Tutorial</a>
+
+**getByText - 요소(element)탐색**
+
+```
+import App from "./App";
+import { render, screen } from "@testing-library/react";
+
+describe("App was tested", () => {
+  test("renders App component", () => {
+    render(<App />);
+
+    expect(screen.getByText("Search:")).toBeInTheDocument(); // pass
+    expect(screen.getByText("Search")).toBeInTheDocument();  // error
+    expect(screen.getByText(/Search/)).toBeInTheDocument();  // pass
+    screen.debug();
+  });
+});
+```
+
+앞에서 보았듯이, RTL은 실질적으로 컴포넌트가 렌더링되어 유저에게 보이는 것을 중점으로 테스트 한다.
+
+- screen은 화면에 렌더링 되는 node를 가리킨다.
+- getByText는 그 node에 포함된 text value를 찾아서 boolean값으로 반환한다. false일 경우 error
+- toBeInTheDocument(); 메서드로 해당 요소가 DOM에 존재하는지 확인
+
+**getByRole - type 확인**
+
+- getByRole은 보통 label-aria 요소를 통해 검색된다.
+- 표시되는 Text뿐 아니라 **접근하기 위한 역할**로도 요소를 선택할 수 있다.
+- 요소에 접근할 수 없는 경우 error를 반환한다.
+
+```
+describe("App was tested", () => {
+  test("renders App component", () => {
+    render(<App />);
+
+    expect(screen.getByRole("textbox")).toBeInTheDocument();
+    screen.debug();
+  });
+});
+```
+
+textbox에 접근한 수 있는지 확인
+
+> DOM에는 이미 HTML 요소에 암묵적인 역할이 붙어 있기 때문에 테스트를 위해 HTML 요소에 명시적으로 aria-role을 할당할 필요가 없는 경우가 많다. 이것이 RTL에서 **요소 검색 기능**으로 getByRole()을 getByText()의 강력한 경쟁자로 만드는 이유다.
+
+**기타 검색 기능**
