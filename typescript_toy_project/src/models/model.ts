@@ -26,3 +26,19 @@ export interface TabProps {
   clickedTab: string;
   onClick: React.MouseEventHandler;
 }
+
+export class TagsProps {
+  text: string;
+  id: string;
+
+  constructor(currentText: string) {
+    const index = () => {
+      for (let i = 0; i++; ) {
+        return i.toString();
+      }
+    };
+
+    this.text = currentText;
+    this.id = index();
+  }
+}

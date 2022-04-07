@@ -6,8 +6,12 @@ import axios from 'axios';
 
 import MemoList from 'components/MemoList';
 import { setMemo } from 'models/new-memo';
+import { useDispatch } from 'react-redux';
+import { memoActions } from 'store';
 
 const MemoListPage: NextPage<{ memoList: PlaceHolder[] }> = ({ memoList }) => {
+  const dispatch = useDispatch();
+
   const newMemoList = memoList.map((item) => {
     const userName = item.userId;
     const title = item.title;
@@ -15,9 +19,10 @@ const MemoListPage: NextPage<{ memoList: PlaceHolder[] }> = ({ memoList }) => {
     return new setMemo(userName, title, body);
   });
 
+  dispatch(memoActions.memoList(memoList));
   return (
     <Fragment>
-      <MemoList memoList={newMemoList} />
+      <MemoList />
     </Fragment>
   );
 };

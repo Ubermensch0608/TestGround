@@ -1,9 +1,12 @@
 import React, { useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import { setMemo } from '../models/new-memo';
 
 import styled from 'styled-components';
+import { memoActions } from 'store';
 
 const NewMemo: React.FC<{ memo: (memo: setMemo) => void }> = ({ memo }) => {
+  const dispatch = useDispatch();
   const userRef = useRef<HTMLInputElement>(null);
   const titleRef = useRef<HTMLInputElement>(null);
   const memoTextRef = useRef<HTMLTextAreaElement>(null);
@@ -21,6 +24,14 @@ const NewMemo: React.FC<{ memo: (memo: setMemo) => void }> = ({ memo }) => {
     }
 
     memo(new setMemo(userValue, titleValue, cleanTextValue));
+    dispatch(
+      memoActions.memoList({
+        userId: 'm1',
+        id: 'm1',
+        title: '종원',
+        body: '종원',
+      }),
+    );
 
     userRef.current!.value = '';
     titleRef.current!.value = '';

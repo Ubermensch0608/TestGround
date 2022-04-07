@@ -5,7 +5,7 @@ const Child = ({ returnComment }) => {
     console.log("함수 실행!");
   }, [returnComment]);
 
-  return <div>{returnComment("종원")}</div>;
+  return <h1>{returnComment("종원")}</h1>;
 };
 
 export default Child;

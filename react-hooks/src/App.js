@@ -1,3 +1,4 @@
+import CustomHook from "./components/CustomHook/CustomHook";
 import UseCallback from "./components/useCallback/UseCallback";
 import ContextAPI from "./components/useContext/ContextAPI";
 import UseEffect from "./components/useEffect/UseEffect";
@@ -21,7 +22,8 @@ const App = () => {
       {/* <PracticeParent /> */}
       {/* <ContextAPI /> */}
       {/* <UseMemo /> */}
-      <UseCallback />
+      {/* <UseCallback /> */}
+      <CustomHook />
     </div>
   );
 };
