@@ -30,3 +30,30 @@ npm을 통한 추가 라이브러리 설치가 있어야한다고 생각했지�
 
 참고 문서:
 <a href='https://www.boyney.io/blog/2019-05-21-my-experience-moving-from-enzyme-to-react-testing-library'>My experience moving from Enzyme to react-testing-library - DAVID BOYNE</a>
+
+### Enzyme과 RTL의 차이점
+
+**Enzyme**
+
+- 테스트를 기능 구현에 초점을 맞추고 있다.
+
+**React Testing Library**
+
+- 테스트를 사용자의 행동(유저 이벤트)에 중점을 둔다.
+- 테스트 속도가 비교적 빠르다.
+
+다양한 npm 라이브러리를 제작한 **Kent C. Dodds**는 다음과 같은 말을 트위터에 올렸다.
+
+> The more your tests resemble the way your software is used, the more confidence they can give you.
+>
+> -Kent C. Dodds -
+
+둘은 테스트가 어떠한 점에 중점이 되었느냐에 따라 선택하여 사용할 수 있겠지만, RTL은 보다 사용자의 행동 즉, **사용자**에 중점을 둔 테스트 방식이라는 점에서 매력적이게 보인다.
+
+Kent C. Dodds의 말처럼 우리가 만드는 서비스는 사용자 중심이 될 때 사용자가 더 만족하고, 더 자주 이용하게 되는 결과로 이어질 확률이 높을 것이다.
+
+**테스트의 선순환**
+
+> Write tests → Build accessible components → Tests Pass
+
+개발자는 이러한 순환을 통해 좋은 코드를 관리할 수 있고, 안전한 테스트를 마칠 수 있다. 하지만, 더 중요한 것은 이것이 사용자의 사용성과 접근성을 높인다는 점이다.
