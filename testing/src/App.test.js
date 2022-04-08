@@ -1,11 +1,17 @@
 import App from "./App";
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 
 describe("App was tested", () => {
-  test("renders App component", () => {
+  test("renders App component", async () => {
     render(<App />);
 
-    expect(screen.getByRole("textbox")).toBeInTheDocument();
-    screen.debug();
+    await screen.findByText(/Signed in as/);
+    expect(screen.queryByText(/Searched for JavaScript/)).toBeNull();
+
+    fireEvent.change(screen.getByRole("textbox"), {
+      target: { value: "JavaScript" },
+    });
+
+    expect(screen.getByText(/Searches for JavaScript/)).toBeInTheDocument();
   });
 });
