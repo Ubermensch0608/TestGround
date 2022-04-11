@@ -202,3 +202,42 @@ React에서는 다수의 동일한 컴포넌트를 list의 형태로 재사용�
 RTL에서는 fireEvent 메서드를 이용하여 유저의 상호작용을 작동시킨다. 이것은 userEvent를 대체하여 사용되는데 기존의 방식보다 덜 민감하기 때문이다. 그렇기 때문에 실질적으로 유저가 발생시키는 이벤트에만 반응한다.
 
 또한, 종종 userEvent는 fireEvent의 특성에서 빠지는 부분이 있다.
+
+### Callback Handler
+
+callback handler에 대한 test
+
+onChange와 같은 함수가 있을 때, 그것으로 부터 오는 callback을 시험한다.
+
+```
+import { fireEvent, render, screen } from "@testing-library/react";
+import Search from "./Search";
+
+// 테스트에 대한 설명, 익명함수
+describe("Search", () => {
+  // 테스트 내용, 익명함수
+  test("calls the onChange callback handler", () => {
+    // jest.fn으로 onChange로 발생하는 함수의 callback을 지정
+    const onChange = jest.fn();
+
+  // Search 컴포넌트를 불러와서 가상의 이벤트 핸들러를 onChange에 지정
+    render(
+      <Search value="" onChange={onChange}>
+        Search:
+      </Search>
+    );
+
+  // textbox에서 이벤트가 발생할 때
+    fireEvent.change(screen.getByRole("textbox"), {
+      target: { value: "JavaScript" },
+    });
+  // fireEvent의 경우 최초 callback 발생시만 측정하기 때문에, 몇 번의 onChange가 발생하든 1회로 취급
+  // useEvent의 경우, 모든 keystroke를 감지
+    expect(onChange).toHaveBeenCalledTimes(1);
+  });
+});
+```
+
+Anyway, React Testing Library encourages you to test your React components not too much in isolation, but in integration (integration test) with other components. Only this way you can actually test whether state changes were applied in the DOM and whether side-effects took effect.
+
+> RTL에서는 `유닛 테스트`보다는 `통합 테스트`를 더 권장한다. 이 방법으로만 상태 변경이 DOM에 적용되었는지 여부와 부작용이 적용되었지는지를 실제로 테스틀할 수 있기 때문이다.
