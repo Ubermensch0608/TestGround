@@ -1,21 +1,25 @@
-import { useRecoilState } from "recoil";
-import { countState } from "./store";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { charCountState, inputState } from "./store";
 
 const App = () => {
-  const [count, setCount] = useRecoilState(countState);
+  const [count, setCount] = useRecoilState(inputState);
+  const charCount = useRecoilValue(charCountState);
 
-  const incrementHandler = () => {
-    setCount((prev) => prev + 1);
+  const inputValueHandler = (event) => {
+    const currentValue = event.target.value.trim();
+    setCount(currentValue);
   };
 
-  const decrementHandler = () => {
-    setCount((prev) => prev - 1);
-  };
   return (
     <div>
-      <h2>{count}</h2>
-      <button onClick={incrementHandler}>+1</button>
-      <button onClick={decrementHandler}>-1</button>
+      <div>
+        <input onChange={inputValueHandler} />
+
+        <h2>{count}</h2>
+      </div>
+      <div>
+        <h2>{charCount}</h2>
+      </div>
     </div>
   );
 };

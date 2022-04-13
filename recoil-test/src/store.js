@@ -1,6 +1,15 @@
-import { atom } from "recoil";
+import { atom, selector } from "recoil";
 
-export const countState = atom({
-  key: "count",
-  default: 0,
+export const inputState = atom({
+  key: "input",
+  default: "",
+});
+
+export const charCountState = selector({
+  key: "charCount",
+  get: ({ get }) => {
+    const text = get(inputState);
+
+    return text.length;
+  },
 });
