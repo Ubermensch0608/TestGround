@@ -241,3 +241,5 @@ describe("Search", () => {
 Anyway, React Testing Library encourages you to test your React components not too much in isolation, but in integration (integration test) with other components. Only this way you can actually test whether state changes were applied in the DOM and whether side-effects took effect.
 
 > RTL에서는 `유닛 테스트`보다는 `통합 테스트`를 더 권장한다. 이 방법으로만 상태 변경이 DOM에 적용되었는지 여부와 부작용이 적용되었지는지를 실제로 테스틀할 수 있기 때문이다.
+
+### ASYNCHRONOUS / ASYNC
