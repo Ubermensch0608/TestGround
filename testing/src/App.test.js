@@ -4,6 +4,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import App from "./App";
+import { act } from "react-dom/test-utils";
 
 jest.mock("axios");
 
@@ -14,13 +15,14 @@ describe("App", () => {
       { objectID: "2", title: "React" },
     ];
 
-    axios.get.mockImplementationOnce(() =>
-      Promise.resolve({ data: { hits: stories } })
-    );
+    const promise = Promise.resolve({ data: { hits: stories } });
+
+    axios.get.mockImplementationOnce(() => promise);
 
     render(<App />);
 
-    userEvent.click(screen.getByRole("button"));
+    await userEvent.click(screen.getByRole("button"));
+    await act(() => promise);
 
     const items = await screen.findAllByRole("listitem");
 
