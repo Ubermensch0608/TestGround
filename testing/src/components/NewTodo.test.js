@@ -1,20 +1,27 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 import NewTodo from "./NewTodo";
 
 describe("it's about new todo test", () => {
-  test("render NewTodo Component", async () => {
+  test("Input에 타이핑이 가능한지", async () => {
     render(<NewTodo />);
-
     screen.debug();
 
-    await fireEvent.change(screen.getByRole("textbox"), {
+    fireEvent.change(screen.getByRole("textbox"), {
       target: { value: "Hi!" },
     });
 
-    await userEvent.click(screen.getByRole("button"));
+    expect(screen.getByRole("textbox")).toHaveValue("Hi!");
+  });
 
-    const item = await screen.findByRole("paragraph");
-    expect(item).toHaveLength(3);
+  test("새로운 Todo 추가가 가능한지", () => {
+    render(<NewTodo />);
+
+    fireEvent.change(screen.getByRole("textbox"), {
+      target: { value: "Hi!" },
+    });
+
+    fireEvent.click(screen.getByRole("button"));
+
+    expect(screen.getAllByText(/Hi!/)).toHaveLength(1);
   });
 });
