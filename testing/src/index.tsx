@@ -1,16 +1,15 @@
 import { createRoot } from "react-dom/client";
+import { RecoilRoot } from "recoil";
 import App from "./App";
-import { store } from "./app/store";
-import { Provider } from "react-redux";
 import * as serviceWorker from "./serviceWorker";
 
 const container = document.getElementById("root") as Element;
 const root = createRoot(container);
 
 root.render(
-  <Provider store={store}>
+  <RecoilRoot>
     <App />
-  </Provider>
+  </RecoilRoot>
 );
 
 // If you want your app to work offline and load faster, you can change

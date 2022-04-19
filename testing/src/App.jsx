@@ -1,9 +1,27 @@
-import { screen, waitFor } from "@testing-library/react";
-import APIComponent from "components/APIComponent";
-import Counter from "components/Counter";
+import { useRecoilState } from "recoil";
+import { countState } from "store";
 
 const App = () => {
-  return <APIComponent />;
+  const [{ count }, setCount] = useRecoilState(countState);
+  return (
+    <>
+      <div>
+        <button
+          aria-label="increment"
+          onClick={() => setCount({ count: count + 1 })}
+        >
+          +1
+        </button>
+        <button
+          aria-label="decrement"
+          onClick={() => setCount({ count: count - 1 })}
+        >
+          -1
+        </button>
+      </div>
+      <div role="contentinfo">Count is {count}</div>
+    </>
+  );
 };
 
 export default App;
