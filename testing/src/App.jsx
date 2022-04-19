@@ -1,43 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import NewTodo from "components/NewTodo";
 
-// const URL = "http://hn.algolia.com/api/v1/search";
+const URL = "http://hn.algolia.com/api/v1/search";
 
 function App() {
-  // const [stories, setStories] = React.useState([]);
-  // const [error, setError] = React.useState(null);
+  const [hitsData, setHitsData] = useState([]);
 
-  // async function handleFetch(event) {
-  //   let result;
-
-  //   try {
-  //     result = await axios.get(`${URL}?query=React`);
-
-  //     setStories(result.data.hits);
-  //   } catch (error) {
-  //     setError(error);
-  //   }
-  // }
-
+  const fetchDataHandler = async () => {
+    try {
+      const { data } = await axios.get(URL);
+      const fetchedHits = data.hits;
+      setHitsData(fetchedHits);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
-    <NewTodo />
-
-    // <div>
-    //   <button type="button" onClick={handleFetch}>
-    //     Fetch Stories
-    //   </button>
-
-    //   {error && <span>Something went wrong ...</span>}
-
-    //   <ul>
-    //     {stories.map((story) => (
-    //       <li key={story.objectID}>
-    //         <a href={story.url}>{story.title}</a>
-    //       </li>
-    //     ))}
-    //   </ul>
-    // </div>
+    <div>
+      <button onClick={fetchDataHandler}>fetch</button>
+      <ul>
+        {hitsData.map((hit) => (
+          <li key={hit.objectID}>
+            <span>Title: </span>
+            <span>{hit.title ? hit.title : "----------------"}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
 
