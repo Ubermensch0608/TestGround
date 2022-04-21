@@ -1,26 +1,35 @@
-import { useRecoilState } from "recoil";
-import { countState } from "store";
+import NewTodo from "components/Todo/NewTodo";
+import { useState } from "react";
+
+const DUMMY_TODOS = [
+{
+  id: 't1',
+  todo: 'Learn Nest.js'
+},
+{
+  id: 't2',
+  todo: 'Buy a Coffee'
+},
+]
 
 const App = () => {
-  const [{ count }, setCount] = useRecoilState(countState);
+const [todos, setTodos] = useState(DUMMY_TODOS)
+
+const addNewTodoHandler = (newTodo) => {
+   const todoTemplate = {
+     id: Math.random(),
+     todo: newTodo
+   }
+   setTodos(prevTodos=> [ todoTemplate , ...prevTodos ] )
+}
+
   return (
     <>
-      <div>
-        <button
-          aria-label="increment"
-          onClick={() => setCount({ count: count + 1 })}
-        >
-          +1
-        </button>
-        <button
-          aria-label="decrement"
-          onClick={() => setCount({ count: count - 1 })}
-        >
-          -1
-        </button>
-      </div>
-      <div role="contentinfo">Count is {count}</div>
-    </>
+      <NewTodo onNewTodo={addNewTodoHandler}/>
+      <ul>
+        {todos.map(todo=><li key={todo.id}>{todo.todo}</li>)}
+      </ul>
+ </>
   );
 };
 

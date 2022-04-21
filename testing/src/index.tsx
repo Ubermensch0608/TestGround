@@ -1,5 +1,4 @@
 import { createRoot } from "react-dom/client";
-import { RecoilRoot } from "recoil";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
@@ -7,9 +6,9 @@ const container = document.getElementById("root") as Element;
 const root = createRoot(container);
 
 root.render(
-  <RecoilRoot>
+
     <App />
-  </RecoilRoot>
+
 );
 
 // If you want your app to work offline and load faster, you can change
