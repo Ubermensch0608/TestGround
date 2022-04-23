@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from "@testing-library/react"
+import { findAllByRole, fireEvent, render, screen } from "@testing-library/react"
 import App from "App"
 
 describe('RTL을 이용한 Todo 통합 테스트', () => {
@@ -43,8 +43,8 @@ describe('RTL을 이용한 Todo 통합 테스트', () => {
 
     test('button 클릭시 NewTodo 추가 확인', async()=>{
      render(<App/>)
-        const inputElement =  screen.getByRole('textbox')
-        const buttonElement = screen.getByRole('button')
+        const inputElement =  await screen.getByRole('textbox')
+        const buttonElement = await screen.getByRole('button')
         
         await fireEvent.change(inputElement, {
             target: {
@@ -55,14 +55,15 @@ describe('RTL을 이용한 Todo 통합 테스트', () => {
         expect(inputElement).toHaveValue('Go to Starbucks!')
 
 
-        await expect(screen.getAllByRole('listitem')).toHaveLength(2)
+        screen.debug()
+        const findList = await screen.findAllByRole('listitem')
+        await expect(findList).toHaveLength(2)
         screen.debug()
         
         await fireEvent.click(buttonElement)
         screen.debug()
 
-        expect(screen.getByText(/Go to Starbucks!/i))
-
-       await expect(screen.getAllByRole('listitem')).toHaveLength(3)
+        
+         expect(await screen.findAllByRole('listitem')).toHaveLength(3)
     })
 })
