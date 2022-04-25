@@ -1,10 +1,23 @@
+import axios from "axios";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
 
+const FRUITS = [
+  {
+    id: "f1",
+    value: "apple",
+  },
+  {
+    id: "f2",
+    value: "banana",
+  },
+];
+
 const Home: NextPage = () => {
+  const [mock, setMock] = useState("");
   const [charactor, setCharactor] = useState("");
 
   const catchCharHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -14,7 +27,16 @@ const Home: NextPage = () => {
 
   const submitValueHandler = (event: React.FormEvent) => {
     event.preventDefault();
+
+    fetch("/mocks/handlers/api/submit")
+      .then((res) => res.json())
+      .then((data) => setMock(data))
+      .catch(() => setMock("error"));
+
+    setCharactor("");
   };
+
+  useEffect(() => {}, []);
 
   return (
     <div className={styles.container}>
@@ -29,8 +51,9 @@ const Home: NextPage = () => {
         <form onSubmit={submitValueHandler}>
           <label></label>
           <input onChange={catchCharHandler} value={charactor} />
-          <button></button>
+          <button>Add somethingm</button>
         </form>
+        <h2>{mock}</h2>
       </main>
 
       <footer className={styles.footer}>footer</footer>
