@@ -19,6 +19,12 @@
       "components/*": ["componets/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "mocks/index.js",
+    "mocks/index.js"
+  ],
   "exclude": ["node_modules"]
 }

@@ -1,43 +1,18 @@
 import axios from "axios";
+import AutoList from "../components/AutoList";
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
 
-const FRUITS = [
-  {
-    id: "f1",
-    value: "apple",
-  },
-  {
-    id: "f2",
-    value: "banana",
-  },
-];
+export interface ProductsInterface {
+  products: { plus_name: string };
+}
 
-const Home: NextPage = () => {
-  const [mock, setMock] = useState("");
-  const [charactor, setCharactor] = useState("");
-
-  const catchCharHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const currentValue = event.target.value;
-    setCharactor(currentValue);
-  };
-
-  const submitValueHandler = (event: React.FormEvent) => {
-    event.preventDefault();
-
-    fetch("/mocks/handlers/api/submit")
-      .then((res) => res.json())
-      .then((data) => setMock(data))
-      .catch(() => setMock("error"));
-
-    setCharactor("");
-  };
-
-  useEffect(() => {}, []);
-
+const Home: NextPage<{ products: { plus_name: string }[] }> = ({
+  products,
+}) => {
   return (
     <div className={styles.container}>
       <Head>
@@ -47,18 +22,22 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>For MSW practice</h1>
-        <form onSubmit={submitValueHandler}>
-          <label></label>
-          <input onChange={catchCharHandler} value={charactor} />
-          <button>Add somethingm</button>
-        </form>
-        <h2>{mock}</h2>
+        <AutoList products={products} />
       </main>
 
       <footer className={styles.footer}>footer</footer>
     </div>
   );
+};
+
+export const getServerSideProps = async (ctx: any) => {
+  const { data } = await axios.get("https://my.backend/product-brand");
+
+  return {
+    props: {
+      products: data,
+    },
+  };
 };
 
 export default Home;
