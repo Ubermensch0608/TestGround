@@ -30,7 +30,7 @@ const Home: NextPage<{ products: { plus_name: string }[] }> = ({
   );
 };
 
-export const getServerSideProps = async (ctx: any) => {
+export const getStaticProps = async (ctx: any) => {
   const { data } = await axios.get("https://my.backend/product-brand");
 
   return {
