@@ -1,12 +1,5 @@
-import {
-  QueryClient,
-  QueryClientProvider,
-  useMutation,
-  useQuery,
-  useQueryClient,
-} from "react-query";
+import { useQuery, QueryClientProvider, QueryClient } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
-import { getTodos, postTodo } from "./my-api";
 
 const queryClient = new QueryClient();
 
@@ -22,38 +15,29 @@ const App = () => {
 export default App;
 
 const Todos = () => {
-  // 클라이언트에 접근
-  const queryClient = useQueryClient();
+  const starwarsFetchHandler = async () => {
+    const res = await fetch("https://swapi.dev/api/people");
+    const data = await res.json();
+    return data;
+  };
 
-  // Queries
-  const query = useQuery("todos", getTodos);
+  const { data, status } = useQuery("people", starwarsFetchHandler);
 
-  // Mutations
-  const mutation = useMutation(postTodo, {
-    onSuccess: () => {
-      // Invalidate and refetch
-      // 무효화와 재fetch
-      queryClient.invalidateQueries("todos");
-    },
-  });
+  console.log(data, status);
+
+  if (status === "loading") {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
-      <ul>
-        {query.data.map((todo) => (
-          <li key={todo.id}>{todo.title}</li>
+      <ul style={{ overflow: "auto" }}>
+        {data.results.map((result) => (
+          <li>
+            <h4>{result.name}</h4>
+          </li>
         ))}
       </ul>
-
-      <button
-        onClick={() => {
-          mutation.mutate({
-            id: Date.now(),
-            title: "Do Laundry",
-          });
-        }}>
-        Add Todo
-      </button>
     </div>
   );
 };

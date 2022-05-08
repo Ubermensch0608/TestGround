@@ -31,36 +31,36 @@ const AutoList: FC<{ products: { plus_name: string }[] }> = ({ products }) => {
     }
   };
 
-  const addDataHanlder = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
+  const postDataHandler = async () => {
     const currentInputValue = dataInputRef.current!.value;
 
     try {
-      const response = await fetch("https://my.backend/post-something", {
-        method: "POST",
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-        body: JSON.stringify(currentInputValue),
-      });
+      await axios
+        .post("https://my.backend/post-something", {
+          id: nanoid(),
+          content: currentInputValue,
+        })
+        .then((res) => {
+          const newData = res.data.body;
 
-      console.log(response);
-      return response.json();
-    } catch (error) {
-      console.error(error);
+          setData((prevData) => [newData, ...prevData]);
+        });
+    } catch (err) {
+      console.error(err);
     }
 
     dataInputRef.current!.value = "";
   };
 
-  const updateDataHandler = async () => {
-    const { data } = await axios.get("https://my.backend/post-something");
-
-    setData(data);
+  const getDataHandler = async () => {
+    try {
+      const { data } = await axios.get("https://my.backend/post-something");
+      setData((prevData) => [...data, ...prevData]);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
-  console.log(data);
   return (
     <div style={{ display: "flex" }}>
       <div
@@ -90,11 +90,14 @@ const AutoList: FC<{ products: { plus_name: string }[] }> = ({ products }) => {
           borderRadius: "12px",
           marginLeft: "30px",
         }}>
-        <form onSubmit={addDataHanlder}>
+        <form>
           <label>추가하기</label>
           <input ref={dataInputRef} />
-          <button type="submit" onClick={updateDataHandler}>
-            업데이트
+          <button type="button" onClick={getDataHandler}>
+            가져오기
+          </button>
+          <button type="button" onClick={postDataHandler}>
+            추가하기
           </button>
         </form>
         <ul>

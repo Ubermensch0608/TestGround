@@ -8,13 +8,7 @@ export const handlers = [
   }),
 
   rest.post("https://my.backend/post-something", (req, res, ctx) => {
-    return res(
-      ctx.status(201),
-      ctx.json({
-        id: "e6f36a",
-        content: "test",
-      })
-    );
+    return res(ctx.json(req));
   }),
 
   rest.get("https://my.backend/post-something", (req, res, ctx) => {
