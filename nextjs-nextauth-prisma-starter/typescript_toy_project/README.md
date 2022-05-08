@@ -1,3 +1,0 @@
-git clone
-
-yarn install
