@@ -1,0 +1,14 @@
+.calculator {
+  margin: auto 40px;
+}
+
+.calculator button {
+  margin: 5px;
+  width: 30px;
+  height: 30px;
+}
+
+.reset button {
+  width: 70px;
+  background: tomato;
+}

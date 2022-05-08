@@ -1,0 +1,10 @@
+.button {
+  border: none;
+  margin: 0px;
+  background: lightskyblue;
+  border-radius: 3px;
+}
+
+.button:hover {
+  cursor: pointer;
+}
