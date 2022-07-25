@@ -1,5 +1,3 @@
-import { useQuery, QueryClientProvider, QueryClient } from 'react-query';
-import { ReactQueryDevtools } from 'react-query/devtools';
 import Posts from './Posts';
 import './app.css';
 
