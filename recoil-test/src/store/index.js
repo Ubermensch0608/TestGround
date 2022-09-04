@@ -1,4 +1,5 @@
-import { atom, selector } from 'recoil';
+import { atom, selector, selectorFamily } from 'recoil';
+import axios from 'axios';
 
 export const SHOW_ALL = 'Show All';
 export const SHOW_COMPLETE = 'Show Complete';
@@ -46,5 +47,43 @@ export const todoListStatsState = selector({
       totalUncompletedNum,
       percentCompleted,
     };
+  },
+});
+
+// ---------------------------------------------------
+
+export const currentUserIDState = atom({
+  key: 'CurrentUserID',
+  default: 1,
+});
+
+export const currentUserNameQuery = selector({
+  key: 'CurrentUserName',
+  get: async ({ get }) => {
+    const currentUserID = get(currentUserIDState);
+
+    try {
+      const { data } = await axios.get(
+        `https://jsonplaceholder.typicode.com/users/${currentUserID}`
+      );
+      return data.name;
+    } catch (error) {
+      throw new Error(error);
+    }
+  },
+});
+
+export const userNameQuery = selectorFamily({
+  key: 'UserName',
+  get: (userID) => async () => {
+    const response = await axios(
+      `https://jsonplaceholder.typicode.com/users/${userID}`
+    );
+
+    if (response.status !== 200) {
+      throw new Error();
+    }
+
+    return response.data.name;
   },
 });
