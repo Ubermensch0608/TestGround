@@ -1,0 +1,34 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+html, body {
+    height: 100%;
+    font-size: 15px;
+}
+
+
+.title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper {
+}
+
+.innerContents{
+    display: flex;
+    flex-flow: column nowrap;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.innerContents2{
+    display: flex;
+    justify-content: center;
+    flex-flow: row nowrap;
+    gap: 10 0px;
+}

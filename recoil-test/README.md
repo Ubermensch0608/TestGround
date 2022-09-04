@@ -66,3 +66,21 @@ const [charactor, setCharactor] = useRecoilState(inputState)
 ```
 
 charator은 state의 값이 될 것이고, setCharactor은 useState의 두 번째 인자인 setter함수 처럼 state를 변경시켜준다.
+
+### useRecoilValue
+
+읽기 전용 method
+
+### useSetRecoilState
+
+쓰기 전용 method
+
+### selector
+
+atom은 state를 저장할 수 있는 전역 저장소이다.
+이 atom을 이용하여 더 복잡한 로직 구현이 필요할 때, 다수의 atom을 다룰 필요가 있을 때 selector을 사용한다.
+
+- get
+  - atom을 읽기 전용으로 지정하여 atom의 state를 참조할 수 있다. 이렇게 특정 atom을 지정하는 것을 **구독한다**라고 한다.
+  - 구독한 atom의 상태가 하나라도 변경될 때, 해당 selector는 재평가 된다.
+- set
